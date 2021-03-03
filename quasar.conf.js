@@ -189,8 +189,19 @@ module.exports = function (/* ctx */) {
 
       builder: {
         // https://www.electron.build/configuration/configuration
-
-        appId: 'dhreminder'
+        bundler: 'builder',
+        appId: 'ng.agrihubtech.dhreminder',
+        win: {
+          target: 'nsis',
+          certificateFile: 'private/nairafox.pfx',
+          certificatePassword: '',
+          verifyUpdateCodeSignature: false,
+          publisherName: 'nairafox'
+        },
+        copyright: 'Copyright Nairafox',
+        publish: {
+          provider: 'github'
+        }
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration

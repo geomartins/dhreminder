@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
-    "release": "electron-builder -w -p 'onTagOrDraft'",
+    "release": "quasar build -m electron -P onTagOrDraft",
     "win-cert": "electron-builder create-self-signed-cert -p nairafox"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "babel-eslint": "^10.0.1",
     "devtron": "^1.4.0",
     "electron": "^9.4.3",
+    "electron-builder": "^22.10.5",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.1.1",
     "electron-packager": "^14.2.1",

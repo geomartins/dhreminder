@@ -172,7 +172,7 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
     electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: 'builder', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
@@ -189,7 +189,6 @@ module.exports = function (/* ctx */) {
 
       builder: {
         // https://www.electron.build/configuration/configuration
-        bundler: 'builder',
         appId: 'ng.agrihubtech.dhreminder',
         win: {
           target: 'nsis',
@@ -198,9 +197,10 @@ module.exports = function (/* ctx */) {
           verifyUpdateCodeSignature: false,
           publisherName: 'nairafox'
         },
-        copyright: 'Copyright Nairafox',
         publish: {
-          provider: 'github'
+          provider: 'github',
+          // repo: 'https://github.com/geomartins/dhreminder',
+          releaseType: 'draft'
         }
       },
 

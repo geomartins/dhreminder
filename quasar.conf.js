@@ -9,6 +9,7 @@
 
 module.exports = function (/* ctx */) {
   return {
+
     // https://quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
 
@@ -19,9 +20,11 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
-
       'i18n',
-      'axios'
+      'axios',
+      'firebase',
+      'authMiddleware',
+      'authWatcher'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -100,7 +103,10 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'LocalStorage',
+        'Notify'
+      ]
     },
 
     // animations: 'all', // --- includes all animations

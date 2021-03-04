@@ -1,35 +1,46 @@
+
 <template>
   <q-page class="flex flex-center login" >
 
     <div class="login-main">
-      <q-list class="q-mb-md">
-          <q-item >
-        <q-item-section>
-          <q-item-label style="font-size: 1.2rem">Sign In to account</q-item-label>
-          <q-item-label caption style="font-size: 0.80rem">
-            Enter your email address and password to login
+      <q-card class="q-mt-xs q-ml-sm q-mr-sm shadow-9" style="width: 500px" >
+          <q-separator />
 
-          </q-item-label>
-        </q-item-section>
-      </q-item>
-      </q-list>
-      <div class="q-ma-sm">
-        <q-input outlined  v-model="email" label="Email Address" stack-label :dense="dense" />
-      </div>
-      <div class="q-ma-sm">
-        <q-input type="password" outlined v-model="password" label="Password" stack-label :dense="dense" />
-      </div>
-      <div class="q-mt-lg q-ml-sm q-mr-sm">
+          <q-card-section>
 
-        <div v-if="$store.state.login.loadingStatus == true">
-          <q-spinner-tail
-            color="primary"
-            size="2em"
-          />
+            <q-item  class=" q-mb-sm q-mb-lg" >
+                <q-item-section avatar top>
+                    <q-avatar icon="group" color="teal" text-color="white"  />
+                </q-item-section>
 
-        </div>
-        <q-btn v-else color="primary" class="full-width" label="Login Now" :disabled="!$store.state.login.validation" @click.prevent="login()"/>
-      </div>
+                <q-item-section>
+                    <q-item-label lines="1"> Sign In to account</q-item-label>
+                    <q-item-label caption> Enter your email address and password to login</q-item-label>
+                </q-item-section>
+
+            </q-item>
+
+            <div class="q-mr-lg q-ml-lg q-mt-md q-mb-xs">
+                <q-input type="email" v-model="email" label="Email Address" outlined />
+            </div>
+
+            <div class="q-mr-lg q-ml-lg q-mt-md q-mb-xs">
+                <q-input type="password" v-model="password" label="Password" outlined />
+            </div>
+          </q-card-section>
+
+          <q-separator />
+          <q-card-actions class="q-pt-lg q-pb-lg q-ml-md q-pl-lg q-pr-lg q-mr-md">
+               <div v-if="$store.state.login.loadingStatus == true">
+                    <q-spinner-tail
+                    color="primary"
+                    size="2em"
+                    />
+                </div>
+            <q-btn v-else label="Submit" color="teal-8" class="q-pt-xs q-pb-xs q-pl-lg q-pr-lg full-width" :disabled="!$store.state.login.validation" @click.prevent="login()" style="margin: auto" />
+          </q-card-actions>
+
+        </q-card>
 
     </div>
   </q-page>
@@ -82,21 +93,13 @@ export default {
 
 <style>
 .login{
-  background: url('/bg.jpg');
+  background: url('~assets/login_bg.jpeg');
   background-size: cover;
   background-position: center center;
 
 }
 
 .login-main {
-    width: 450px;
-    padding: 20px 20px;
-    /* -webkit-box-shadow: 0 0 37px rgb(8 21 66 / 5%); */
-    /* box-shadow: 0 0 37px rgb(8 21 66 / 5%); */
-    margin: 0 auto;
-    background-color: #fff;
-    border-top: 1px solid #145ea8;
-    border-radius: 0px 0px 10px;
 }
 
 .logo {

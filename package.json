@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
-    "release": "quasar build -m electron -P onTagOrDraft",
+    "release": "quasar build -m electron -P always",
     "win-cert": "electron-builder create-self-signed-cert -p nairafox"
   },
   "dependencies": {

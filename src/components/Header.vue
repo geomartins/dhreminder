@@ -1,7 +1,10 @@
 <template>
-    <q-header>
-     <q-bar class="q-electron-drag">
-          <q-icon name="laptop_chromebook" />
+    <q-header elevated class="bg-teal">
+     <q-bar  class="q-electron-drag">
+       <q-avatar>
+      <img src="~assets/favicon-96x96.png">
+    </q-avatar>
+
           <div>Dhreminder</div>
 
           <q-space />
@@ -12,8 +15,8 @@
 
         </q-bar>
 
-        <div class="q-pa-sm q-pl-md row items-center" v-if="$route.path != '/'">
-          <div class="cursor-pointer non-selectable"  @click="$router.push('/dashboard')" >
+        <div class="q-pt-xs q-pb-xs q-pl-sm q-pr-sm q-pl-md row items-center" v-if="$route.path != '/'">
+          <div class="cursor-pointer non-selectable"  @click="$refs.addItem.open()" >
             Add New
 
           </div>
@@ -55,20 +58,26 @@
             </q-menu>
           </q-btn>
 
-        <q-input dark dense standout v-model="text" input-class="text-right" class="q-ml-md" >
+        <q-input dark dense   standout v-model="text" input-class="text-right" class="q-ml-md" >
           <template v-slot:append>
             <q-icon v-if="text === ''" name="search" />
             <q-icon v-else name="clear" class="cursor-pointer" @click="text = ''" />
           </template>
         </q-input>
         </div>
+
+        <app-add-item-card ref="addItem"></app-add-item-card>
     </q-header>
 </template>
 
 <script>
 // import { firebaseAuth } from '../boot/firebase'
+import AddItemCard from './AddItemCard'
 export default {
   name: 'Header',
+  components: {
+    'app-add-item-card': AddItemCard
+  },
   data () {
     return {
       text: '',
@@ -114,6 +123,6 @@ export default {
 <style>
 
 .q-field--dense .q-field__control, .q-field--dense .q-field__marginal {
-    height: 25px!important;
+    /* height: 1.5rem!important; */
 }
 </style>

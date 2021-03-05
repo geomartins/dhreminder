@@ -1,6 +1,6 @@
 {
   "name": "dhreminder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Domain & Hosting Reminder",
   "productName": "dhreminder",
   "author": "Martins Abiodun <martinsabiodun94@gmail.com>",
@@ -9,6 +9,9 @@
     "lint": "eslint --ext .js,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
+    "updater": "npm i electron-updater &&  npm install electron-log",
+    "confirm": "cp dist/electron/Packaged/win-unpacked/resources/app-update.yml .quasar/electron/dev-app-update.yml",
+    "pre-release": "quasar build -m electron --bundler builder",
     "release": "quasar build -m electron -P always",
     "win-cert": "electron-builder create-self-signed-cert -p nairafox"
   },
@@ -16,6 +19,8 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
+    "electron-log": "^4.3.2",
+    "electron-updater": "^4.3.8",
     "firebase": "^8.2.9",
     "quasar": "^1.0.0",
     "vue-i18n": "^8.0.0"

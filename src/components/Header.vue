@@ -5,7 +5,7 @@
       <img src="~assets/favicon-96x96.png">
     </q-avatar>
 
-          <div>Dhreminder</div>
+          <div>{{ name }} {{ version }}</div>
 
           <q-space />
 
@@ -16,10 +16,10 @@
         </q-bar>
 
         <div class="q-pt-xs q-pb-xs q-pl-sm q-pr-sm q-pl-md row items-center" v-if="$route.path != '/'">
-          <div class="cursor-pointer non-selectable"  @click="$refs.addItem.open()" >
-            Add New
-
+          <div class="cursor-pointer non-selectable" @click="$router.push('/dashboard')">
+            Domains
           </div>
+
           <div class="q-ml-md cursor-pointer non-selectable" @click="$router.push('/upcoming')"  style="position: relative">
             Upcoming
             <q-badge rounded color="red" style="top: -6px; right: -8px" floating>4</q-badge>
@@ -27,6 +27,8 @@
           </div>
 
           <q-space />
+
+            <q-btn dense flat  icon="add"  @click.prevent="$refs.addItem.open()" />
 
            <q-btn dense flat no-wrap>
             <q-avatar icon="people" rounded size="20px">
@@ -58,7 +60,7 @@
             </q-menu>
           </q-btn>
 
-        <q-input dark dense   standout v-model="text" input-class="text-right" class="q-ml-md" >
+        <q-input v-model="filter" dark dense  standout  input-class="text-right" class="q-ml-md" >
           <template v-slot:append>
             <q-icon v-if="text === ''" name="search" />
             <q-icon v-else name="clear" class="cursor-pointer" @click="text = ''" />
@@ -71,18 +73,27 @@
 </template>
 
 <script>
-// import { firebaseAuth } from '../boot/firebase'
+
+import Vue from 'vue'
 import AddItemCard from './AddItemCard'
-export default {
+export default Vue.extend({
   name: 'Header',
   components: {
     'app-add-item-card': AddItemCard
   },
   data () {
     return {
+      name: process.env.NAME,
+      version: 'v' + process.env.VERSION,
       text: '',
       firebaseEmail: '',
       stat: false
+    }
+  },
+  computed: {
+    filter: {
+      get () { return this.$store.getters['item/fetchfilter'] },
+      set (value) { this.$store.commit('item/UPDATE_FILTER', value) }
     }
   },
   methods: {
@@ -95,7 +106,6 @@ export default {
     maximize () {
       if (process.env.MODE === 'electron') {
         const win = this.$q.electron.remote.BrowserWindow.getFocusedWindow()
-
         if (win.isMaximized()) {
           win.unmaximize()
         } else {
@@ -114,15 +124,6 @@ export default {
       this.$store.dispatch('login/logout', this)
     }
   },
-  created () {
-    console.log(this.$firebaseCurrentUserEmail)
-  }
-}
+  created () {}
+})
 </script>
-
-<style>
-
-.q-field--dense .q-field__control, .q-field--dense .q-field__marginal {
-    /* height: 1.5rem!important; */
-}
-</style>

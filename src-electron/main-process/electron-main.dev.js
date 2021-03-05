@@ -11,6 +11,7 @@ import { app, BrowserWindow } from 'electron'
 
 app.whenReady().then(() => {
   // allow for a small delay for mainWindow to be created
+
   setTimeout(() => {
     // Install `electron-debug` with `devtron`
     electronDebug({ showDevTools: false })

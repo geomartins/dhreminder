@@ -20,6 +20,8 @@ var firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const firebaseAuth = firebaseApp.auth()
 const fs = firebaseApp.firestore()
+const domainCollections = fs.collection('domains')
+const timestamp = firebase.firestore.FieldValue.serverTimestamp()
 // firebase.analytics();
 
-export { firebaseAuth, fs }
+export { firebaseAuth, fs, domainCollections, timestamp }

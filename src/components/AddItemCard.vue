@@ -1,5 +1,5 @@
 <template>
-    <q-dialog v-model="dialog" :position="position">
+    <q-dialog v-model="dialog" >
       <q-card  class="dialogContainer">
         <q-linear-progress :value="0.6" color="teal" />
             <q-card-section class="dialogBox">
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="buttonBar" >
-                    <q-btn  size="md" label="Track" outline color="teal"  @click="create()"  />
+                    <q-btn  size="md" label="Track" outline color="teal" :disabled="$store.state.item.innerLoadingStatus"  @click="create()"  />
                     <q-btn  label="Close" size="md" outline color="red"   v-close-popup />
                 </div>
 
@@ -40,7 +40,6 @@
 
 <script>
 import Vue from 'vue'
-
 export default Vue.extend({
   name: 'AddItemCard',
   data () {

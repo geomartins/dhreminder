@@ -1,0 +1,2 @@
+TODO: Work on Name.com api documentation
+TODO: Ability to delete tracked domain

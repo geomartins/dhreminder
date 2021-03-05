@@ -1,4 +1,5 @@
 import { app, BrowserWindow, nativeTheme } from 'electron'
+const updater = require('./updater')
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -20,18 +21,22 @@ function createWindow () {
   /**
    * Initial window options
    */
+  setTimeout(() => {
+    updater()
+    console.log('Martinssssssssssssssssss')
+  }, 1500)
   mainWindow = new BrowserWindow({
     width: 800,
     height: 500,
-    x: 100,
-    y: 100,
+    // x: 100,
+    // y: 100,
     frame: false,
     useContentSize: true,
     webPreferences: {
       // Change from /quasar.conf.js > electron > nodeIntegration;
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
-      nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
+      nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION
 
       // More info: /quasar-cli/developing-electron-apps/electron-preload-script
       // preload: path.resolve(__dirname, 'electron-preload.js')

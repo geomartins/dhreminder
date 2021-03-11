@@ -18,10 +18,25 @@ const formatDate = (date) => {
   if (month.length < 2) { month = '0' + month }
   if (day.length < 2) { day = '0' + day }
 
-  return [year, month, day].join('/')
+  return [year, month, day].join('-')
+}
+
+const humanReadable = (value) => {
+  if (!value) return ''
+  value = value.toString()
+  var dateData, dateObject, dateReadable
+
+  dateData = value.replace(/-/g, '/').replace('T', ' ').replace(/\..*|\+.*/, '') // For example
+
+  dateObject = new Date(Date.parse(dateData))
+
+  dateReadable = dateObject.toDateString()
+
+  return dateReadable
 }
 
 export {
   timestampConverter,
-  formatDate
+  formatDate,
+  humanReadable
 }

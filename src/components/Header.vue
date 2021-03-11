@@ -21,9 +21,8 @@
           </div>
 
           <div class="q-ml-md cursor-pointer non-selectable" @click="$router.push('/upcoming')"  style="position: relative">
-            Upcoming
-            <q-badge rounded color="red" style="top: -6px; right: -8px" floating>4</q-badge>
-
+            Tracking
+            <!-- <q-badge rounded color="red" style="top: -6px; right: -8px" floating>4</q-badge> -->
           </div>
 
           <q-space />

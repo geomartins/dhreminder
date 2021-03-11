@@ -25,13 +25,22 @@ const state = {
     {
       name: 'provider',
       required: true,
-      label: 'PROVIDERS',
+      label: 'REGISTRAR',
       align: 'left',
       field: row => row.provider ?? '---------------',
       format: val => `${val}`,
       sortable: true
     },
-    { name: 'timestamp', align: 'center', label: 'EXPIRY DATE', field: row => timestampConverter(row.timestamp), sortable: true }
+    {
+      name: 'nameserver',
+      required: true,
+      label: 'NAMESERVER',
+      align: 'left',
+      field: row => row.nameserver ?? ' ',
+      format: val => `${val}`,
+      sortable: true
+    },
+    { name: 'timestamp', align: 'left', label: 'EXPIRY DATE', field: row => timestampConverter(row.timestamp), sortable: true }
 
   ],
   rows: [
@@ -96,15 +105,15 @@ const actions = {
       state.rows = []
       querySnapshot.forEach(function (doc) {
         const modifiedData = { id: doc.id, ...doc.data() }
-        const modifiedRow = { name: doc.data().name, provider: doc.data().provider, timestamp: doc.data().timestamp }
+        const modifiedRow = { id: doc.id, name: doc.data().name, provider: doc.data().provider, nameserver: doc.data().nameserver, timestamp: doc.data().expiry_date }
         state.datas.push(modifiedData)
         state.rows.push(modifiedRow)
       })
     })
   },
 
-  async delete_confirmation ({ commit, dispatch }, payload) {
-    const docId = payload.docId
+  async delete_confirmation ({ commit, dispatch }, docId) {
+    // const docId = payload.docId
     // const vueInstance = payload.vueInstance
     Dialog.create({
       title: 'Confirm',
@@ -118,7 +127,7 @@ const actions = {
 
   async delete ({ commit, state }, docId) {
     domainCollections.doc(docId).delete().then(function () {
-      ping({ type: 'success', message: 'Item deleted successfully' })
+      // ping({ type: 'success', message: 'Item deleted successfully' })
     }).catch(function (err) {
       ping({ type: 'warning', message: err.message })
     })

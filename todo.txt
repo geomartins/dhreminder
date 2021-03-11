@@ -1,2 +1,2 @@
-TODO: Work on Name.com api documentation
-TODO: Ability to delete tracked domain
+TODO: Push Notification to Slack Channel
+TODO: SetUp CronJob to Achieve that

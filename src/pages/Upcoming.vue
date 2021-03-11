@@ -1,7 +1,7 @@
 <template>
 
    <div class="q-pa-xs">
-      <app-breadcrumb title="Expiry Domain List"></app-breadcrumb>
+      <app-breadcrumb title="Tracked Domain Details"></app-breadcrumb>
 
     <q-table
       :data="$store.state.item.rows"
@@ -26,7 +26,7 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td auto-width>
-            <q-btn size="sm" color="primary" round dense @click="props.expand = !props.expand" :icon="props.expand ? 'remove' : 'add'" />
+            <q-btn size="md" flat color="red" round dense @click="$store.dispatch('item/delete_confirmation',props.row.id)" icon="delete_outline" />
           </q-td>
           <q-td
             v-for="col in props.cols"
@@ -36,11 +36,11 @@
             {{ col.value }}
           </q-td>
         </q-tr>
-        <q-tr v-show="props.expand" :props="props">
+        <!-- <q-tr v-show="props.expand" :props="props">
           <q-td colspan="100%">
             <div class="text-left">This is expand slot for row ok now above: {{ props.row.name }}.</div>
           </q-td>
-        </q-tr>
+        </q-tr> -->
       </template>
 
     </q-table>

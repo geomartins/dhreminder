@@ -5,7 +5,7 @@ autoUpdater.logger.transports.file.level = 'info'
 autoUpdater.autoDownload = false
 
 module.exports = () => {
-  autoUpdater.checkForUpdates()
+  autoUpdater.checkForUpdates().catch((e) => console.log(e))
 
   autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
